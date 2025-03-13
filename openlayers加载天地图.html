@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jyymap</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.net/openlayers/4.6.5/ol.css">
+    <script src="https://cdn.staticfile.net/openlayers/4.6.5/ol.js"></script>
+    <style>
+html,body,
+        #map{
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map=new ol.Map({
+            target:'map',//将地图挂载到ID为map的标签上
+            layers:[
+                new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        url:"http://t0.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=4ff29f2eae12300949c120a184eaa5f3",
+                    })
+                }),
+                new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        url:"http://t0.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=4ff29f2eae12300949c120a184eaa5f3",
+                    })
+                }),
+                /*new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        url:"http://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=4ff29f2eae12300949c120a184eaa5f3",
+                    })
+                }),
+                new ol.layer.Tile({
+                    source: new ol.source.XYZ({
+                        url:"http://t0.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=4ff29f2eae12300949c120a184eaa5f3",
+                    })
+                }),*/
+            ],
+            //地图的视角
+            view:new ol.View({
+                zoom:5,//初始层级
+                center:[106,27],//初始的视图中心位置
+                projection:"EPSG:4326"//设置成84坐标系才能有经纬度坐标
+
+        })
+        })
+    </script>
+</body>
+</html>
